@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>重温那些年</title>
+    <meta name="viewport" content="width=640,user-scalable=no">
+    <link href="css/index.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+<div id="maindiv">
+
+    <div id="page0" class="page0">
+        <img src="css/1.png" width="51.71875%" />
+    </div>
+
+    <div id="page1" class="page1" style="display: none;">
+        <img class="p1p1" src="css/3.png" width="59.21875%"/>
+        <div class="page1Main"></div>
+        <img class="p1p2" src="css/4.png" width="100%"/>
+        <img class="p1p3" src="css/5.png" width="22.34375%"/>
+        <div class="p1p4" onclick="jQuery(this).hide()"></div>
+        <div class="p1p5">
+            <div class="p1p5d1 galert7">
+                <div class="p1p5d1t"></div>
+                <div class="p1p5d1m"></div>
+                <div class="p5d1b1" onclick="turnTimu()"></div>
+                <div class="p5d1b2" onclick="jQuery('.p1p5').hide()"></div>
+            </div>
+            <div class="p1p5d2 galert7">
+                <div class="p1p5d2t"><div class="p5d2ts"></div></div>
+                <div class="p1p5d2m"></div>
+                <div class="submitbtn" onclick="submitResult()"></div>
+                <div class="p5d1b1" onclick="returnTimu()"></div>
+                <div class="p5d1b2" onclick="jQuery('.p1p5').hide()"></div>
+            </div>
+        </div>
+        <div class="wintips">回答正确</div>
+        <div class="losetips">回答错误</div>
+        <div class="p1p6" onclick="showcjbtn()"></div>
+        <div class="p1p7" onclick="regame()"></div>
+    </div>
+
+</div>
+</body>
+<script type="text/javascript" src="js/jquery-2.1.1.js"></script>
+<script type="text/javascript" src="js/queData.js"></script>
+<script type="text/javascript" src="js/index.js?3"></script>
+</html>
