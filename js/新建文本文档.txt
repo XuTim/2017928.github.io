@@ -1,0 +1,99 @@
+function showQue(){
+	j("#queMask").show();
+	j(".que-box").fadeIn();
+	jg_aj.curque=queData[jg_aj.level];
+	var quetype=0;
+	var strHtml="";
+	var strHtml1="";
+	
+	strHtml+='<div class="tit-box">';
+	
+	if(jg_aj.curque["资源链接"]!=undefined){
+		var fileName=jg_aj.curque["资源链接"];
+		var fileExtension = fileName.substring(fileName.lastIndexOf('.') + 1);
+		if(fileExtension=="jpg"||fileExtension=="png"){
+			strHtml+='<img id="queImg" class="que-img" src="'+fileName+'">';
+		}else if(fileExtension=="mp4"){
+			strHtml+='<video id="queVideo" class="que-video" width="100%" height="150px" controls="controls" src="'+fileName+'"></video>';
+		}
+	}
+	
+	if(jg_aj.curque["题干"]!=undefined){
+		strHtml+='<div id="queTit" class="que-tit">'+jg_aj.curque["题干"]+'</div>';				
+	}
+	
+	if(jg_aj.curque["题型"]!=undefined){
+		strHtml+='<p id="queType" class="que-type">'+jg_aj.curque["题型"]+'</p>';
+		
+		if(jg_aj.curque["题型"]=="判断题"||jg_aj.curque["题型"]=="单选题"){
+			quetype=1;
+		}else{
+			quetype=0;
+		}
+	}
+	
+	strHtml+='</div>';
+	
+	strHtml1+='<ul class="option-list">';
+	
+	if(jg_aj.curque["A"]!=undefined){
+		strHtml1+='<li dataval="A" class="" onclick="'+(quetype==0?"chooseOp(this)":"chooseDx(this)")+'"><em>A：</em><span>'+jg_aj.curque["A"]+'</span></li>';
+	}
+	
+	if(jg_aj.curque["B"]!=undefined){
+		strHtml1+='<li dataval="B" class="" onclick="'+(quetype==0?"chooseOp(this)":"chooseDx(this)")+'"><em>B：</em><span>'+jg_aj.curque["B"]+'</span></li>';
+	}
+	
+	if(jg_aj.curque["C"]!=undefined){
+		strHtml1+='<li dataval="C" class="" onclick="'+(quetype==0?"chooseOp(this)":"chooseDx(this)")+'"><em>C：</em><span>'+jg_aj.curque["C"]+'</span></li>';
+	}
+	
+	if(jg_aj.curque["D"]!=undefined){
+		strHtml1+='<li dataval="D" class="" onclick="'+(quetype==0?"chooseOp(this)":"chooseDx(this)")+'"><em>D：</em><span>'+jg_aj.curque["D"]+'</span></li>';
+	}
+	
+	strHtml1+='</ul>';
+	
+	j(".scroll-left-box").html(strHtml);
+	j(".scroll-right-box").html(strHtml1);
+	
+}
+
+function chooseDx(obj){
+	j(".option-list li").removeClass("on");
+	j(obj).addClass("on");	
+}
+
+function chooseOp(obj){				
+	if(j(obj).hasClass("on")){
+		j(obj).removeClass("on");
+	}else{
+		j(obj).addClass("on");
+	}				
+}
+
+function submitResult(){
+	var result="";
+	j.each(j(".option-list li"), function(si, sn){		
+		if(j(sn).hasClass("on")){
+			result+=j(sn).attr("dataval");
+		}   		    	
+	});	
+	
+	if(result==""){
+		return;
+	}else if(result==jg_aj.curque["答案"]){
+		j(".que-box").hide();
+		j(".img-succeed").fadeIn();
+		j(".btn-continue").fadeIn();
+		setTimeout(function(){
+			j(".img-succeed").fadeOut();
+			j("#queMask").fadeOut();
+		},3000);		
+	}else{
+		j(".que-box").hide();
+		j(".img-lose").fadeIn();
+		j(".btn-continue").fadeIn();
+	}
+	
+}
